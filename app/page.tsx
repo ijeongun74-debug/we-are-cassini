@@ -12,7 +12,7 @@ export default function Home() {
   const getBackgroundImage = () => {
     switch (stage) {
       case 1:
-        return '/start-bg.jpg';
+        return '/start.jpg';
       case 2:
         return '/next.jpg';
       case 3:
@@ -20,32 +20,32 @@ export default function Home() {
       case 4:
         return '/setlist_2.jpeg';
       default:
-        return '/start-bg.jpg';
+        return '/start.jpg';
     }
   };
 
   return (
-    <main className="relative w-full h-[100dvh] overflow-hidden fixed inset-0">
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={stage}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.5 }}
-          className="absolute inset-0 w-full h-full"
-        >
-          <Image
-            src={getBackgroundImage()}
-            alt={`Step ${stage} background`}
-            fill
-            className="object-cover object-center"
-            priority={stage === 1}
-            sizes="100vw"
-            style={{ objectFit: 'cover', objectPosition: 'center' }}
-          />
-        </motion.div>
-      </AnimatePresence>
+    <div className="relative w-full h-screen overflow-hidden fixed inset-0 flex items-center justify-center bg-black">
+      <div className="relative w-full h-full max-w-[430px] max-h-[932px]" style={{ aspectRatio: '9/16' }}>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={stage}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+            className="absolute inset-0 w-full h-full"
+          >
+            <Image
+              src={getBackgroundImage()}
+              alt={`Step ${stage} background`}
+              fill
+              className="object-cover"
+              priority={stage === 1}
+              sizes="100vw"
+            />
+          </motion.div>
+        </AnimatePresence>
 
       {/* Step 1: 시작창 */}
       <AnimatePresence mode="wait">
@@ -56,7 +56,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
             transition={{ duration: 0.3, delay: 0.1 }}
-            className="absolute bottom-5 left-1/2 -translate-x-1/2 z-10"
+            className="absolute bottom-2 left-1/2 -translate-x-1/2 z-10"
           >
             <button
               onClick={() => setStage(2)}
@@ -65,8 +65,8 @@ export default function Home() {
               <Image
                 src="/start-button.png"
                 alt="시작 버튼"
-                width={350}
-                height={105}
+                width={600}
+                height={180}
                 priority
               />
             </button>
@@ -113,8 +113,8 @@ export default function Home() {
                 <Image
                   src="/setlist-button.png"
                   alt="Next 버튼"
-                  width={900}
-                  height={270}
+                  width={1100}
+                  height={330}
                 />
               </button>
             </motion.div>
@@ -195,6 +195,7 @@ export default function Home() {
           </motion.div>
         )}
       </AnimatePresence>
-    </main>
+      </div>
+    </div>
   );
 }
