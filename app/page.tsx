@@ -25,27 +25,27 @@ export default function Home() {
   };
 
   return (
-    <div className="relative w-full h-screen overflow-hidden fixed inset-0 flex items-center justify-center bg-black">
-      <div className="relative w-full h-full max-w-[430px] max-h-[932px]" style={{ aspectRatio: '9/16' }}>
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={stage}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-            className="absolute inset-0 w-full h-full"
-          >
-            <Image
-              src={getBackgroundImage()}
-              alt={`Step ${stage} background`}
-              fill
-              className="object-cover"
-              priority={stage === 1}
-              sizes="100vw"
-            />
-          </motion.div>
-        </AnimatePresence>
+    <main className="relative w-full h-[100dvh] overflow-hidden fixed inset-0">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={stage}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          className="absolute inset-0 w-full h-full"
+        >
+          <Image
+            src={getBackgroundImage()}
+            alt={`Step ${stage} background`}
+            fill
+            className="object-cover object-center"
+            priority={stage === 1}
+            sizes="100vw"
+            style={{ objectFit: 'cover', objectPosition: 'center' }}
+          />
+        </motion.div>
+      </AnimatePresence>
 
       {/* Step 1: 시작창 */}
       <AnimatePresence mode="wait">
@@ -195,7 +195,6 @@ export default function Home() {
           </motion.div>
         )}
       </AnimatePresence>
-      </div>
-    </div>
+    </main>
   );
 }
